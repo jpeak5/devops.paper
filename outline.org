@@ -1,0 +1,105 @@
+* intro
+  "Computers are like Old Testament gods; lots of rules and no mercy."
+-Campbell, Power of Myth
+
+  Computers, if they were sentient, would be considered deontologists. As the quote so delightfully puts it, rules, no forgiveness. As sysadmins, we are accustomed to working in this space, shepherding our systems, keeping them alive and safe from predators by carefully installing software packages, instituting network access policies, applying patches when someone discovers a hole in the OS or application software. In a field dominated by male, white, conservative agents, it would be unsurprising to find that most members of this set are 'rule-followers'. However, in probably half of this population, the actual work ethic/modus operendi is mostly teleological; that is, many sysadmins go about their duties in an ad hoc, haphazard, and primarily 'human' way; that is, they apply patches manually - the ends justify the means: the system has been patched...
+
+while some humans are oriented towards the deontological, most of us are far less strict in ourselves and in our dealings with the world. So when even the most rule-following of us interfaces with a coldly rule-based 'intelligence' or automoton, there is room for miscommunication; it is possible that our humanness lets us overlook some detail, some subtlety that, while subtlety for us is a hald and fast rule for the computer.
+
+It is an a priori truth that the more that decisions are left to human agents, the greater the likelihood of system fault, vulnerability and failure (?). Spaghetti code, built by many hands, with or without version control, quickly becomes an unsustainable liability.Following one of DevOps fundamental assertions that configuration should be maintained as code, we can start to imagine an equivalence between source code, and configuration. If that relationship is transitive, then we can apply the spaghetti appelation pretty easily to configuration that has been established through organic changes, scripted or otherwise. 
+
+The primary goal of DevOps is to impose a formal order, a set of rules on a given system. These rules define the system, and no matter what sort of interference may happen, the prescribed state is always reaffirmed. Think of this as dealing with deontological machines in a deontological manner; the tool fits the application.
+
+One flaw in this paradigm is that it is human that develop the laws for a given system or for a given component of a system (more on this later). However, at least in the open source community, there is the capacity for peer review on a potentially massive scale, ensuring that defects will be found sooner than later...
+
+- a way of establishing hashable fixity on systems at a semantic level, (not just block level)
+- a focus on plain text, human-readable...
+- devops allows us to regain power and dominion over our tools
+- where traditional sysadmins where more horse-whisperers, sysadmins weilding devops become effective tool users...
+- a focus on reuse of 'code' in the domain of sysadmin (deploying a web server is a well-understood problem)
+- lit is the softest of software, it operates on the softest of things, the human brain...
+
+** rich and increasing 'verse of tools available to developers
+** paper scope: domain of open source dev
+* overview
+** context
+*** cloud computing
+    - services like AWS that provide computing resources such as those traditionally provided by datacenters
+    - on-demand delivery of computing resources
+    - anyone can do it (for better and worse)
+*** continuous delivery as a goal
+    - the delivery pipeline for new features should be as automatic as possible.
+** what is dev ops
+   No agreed definition, but simply, 'a bridge between developers and operations teams' (smeds)
+** why does it exist ?
+   - system reproducibility
+     - disaster recovery
+     - dev environments can be built faithful to production systems
+** who uses it
+** origins of devops
+* challenges to adoption
+** skills required (ksa)
+*** hard to define (smeds)
+*** implies more work for one group or another (smeds)
+*** 
+    "collaboration and communication
+    between developers and operations personnel is mainly based
+    on slow, manual, and error-prone processes. Consequently, it
+    takes a significant amount of time to put changes, new features,
+    and bug fixes into production."
+* examples of benefits
+** reproducibile system environments
+*** disaster recovery
+*** replicate environments for each dev
+* tools
+** config mgmt
+*** ssh-like
+    Easy to adopt because they rely on ssh to execute native nix commands on target machines.
+**** ansible
+**** salt
+*** client/server
+    - Considered to be more flexible than the ssh-based tools (citation ?), but come with a steeper learning curve.
+    - Configuration is defined in a Ruby-based DSL.
+    - relies on a remote configuration server and client software running on the target machine
+**** chef
+**** puppet
+** desktop virtualization
+*** vagrant 
+**** reproducible dev environments (powers)
+     - boxes
+       - can be shared;
+       - boxes are usually configured with a minimum OS install, but can be fully configured app stacks...
+     - benefits
+       - devs work against identical environments
+       - with careful attention to box provisioning, these environments can be made to very closely resemble production systems
+** cloud infrastructure
+   - as with destktop virtualization, cloud infrastructure simplifies the instsantiation, configuration and retirement of virtual machines and containers.
+   - can enable dev groups to side-step local IT departments accustomed to their role as gatekeeper to network and server resources
+** containers
+*** benefits
+    - one process per container emphasizes the importance of modularization and loose coupling amongst stack components
+    - saves resources - many containers may run on a single VM (thus eliminating the overhead of running a vm per component)
+*** obstacles to adoption
+**** skills required
+     - While linux containers have been around for awhile (?), container tech like Docker are proliferating adoption
+     - because of potentially complex networking required between components, an experienced sysadmin is required
+** continuous integration / deployment
+   This is the pipeline from developer system -> version control -> automated build and testing system -> push to production system.
+   The goal is to simplify and speed the deployment of new features.
+   Requires carefully considered and well constructed infrastructure.
+*** jenkins
+*** others ...
+* near future
+** continued adoption of containerization
+** emrgence of TOSCA as a standard for DevOps artifacts (wettinger)
+
+
+- Bang, S. K., Chung, S., Choh, Y., & Dupuis, M. (2013). A Grounded Theory Analysis of Modern Web Applications: Knowledge, Skills, and Abilities for DevOps. In Proceedings of the 2Nd Annual Conference on Research in Information Technology (pp. 61–62). New York, NY, USA: ACM. http://doi.org/10.1145/2512209.2512229
+- Cito, J., Leitner, P., Fritz, T., & Gall, H. C. (2014). The Making of Cloud Applications An Empirical Study on Software Development for the Cloud.
+- Cito, J., Leitner, P., Gall, H. C., Dadashi, A., Keller, A., & Roth, A. (2015). Runtime Metric Meets Developer: Building Better Cloud Applications Using Feedback. In 2015 ACM International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software (Onward!) (pp. 14–27). New York, NY, USA: ACM. http://doi.org/10.1145/2814228.2814232
+- Claps, G. G., Berntsson Svensson, R., & Aurum, A. (2015). On the journey to continuous deployment: Technical and social challenges along the way. Information and Software Technology, 57, 21–31. http://doi.org/10.1016/j.infsof.2014.07.009
+- Hüttermann, M. (2012). DevOps for developers. [electronic resource]. [New York] : Apress : Distributed to the Book trade worldwide by Springer Science+Business Media New York, c2012.
+- Powers, S. (2015). The Open-source Classroom: Vagrant Simplified. Linux J., 2015(249). Retrieved from http://dl.acm.org/citation.cfm?id=2753741.2753748
+- Smeds, J., Nybom, K., & Porres, I. (2015). DevOps: A Definition and Perceived Adoption Impediments. In C. Lassenius, T. Dingsøyr, & M. Paasivaara (Eds.), Agile Processes, in Software Engineering, and Extreme Programming (pp. 166–177). Springer International Publishing. Retrieved from http://link.springer.com/chapter/10.1007/978-3-319-18612-2_14
+- Wettinger, J., Andrikopoulos, V., & Leymann, F. (2015). Enabling DevOps Collaboration and Continuous Delivery Using Diverse Application Environments. In C. Debruyne, H. Panetto, R. Meersman, T. Dillon, G. Weichhart, Y. An, & C. A. Ardagna (Eds.), On the Move to Meaningful Internet Systems: OTM 2015 Conferences (pp. 348–358). Springer International Publishing. Retrieved from http://link.springer.com/chapter/10.1007/978-3-319-26148-5_23
+- Wettinger, J., Breitenbücher, U., & Leymann, F. (2014). Standards-Based DevOps Automation and Integration Using TOSCA. In Proceedings of the 2014 IEEE/ACM 7th International   Conference on Utility and Cloud Computing (pp. 59–68). Washington, DC, USA: IEEE Computer Society. http://doi.org/10.1109/UCC.2014.14
